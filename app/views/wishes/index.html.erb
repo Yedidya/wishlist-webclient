@@ -1,0 +1,8 @@
+<h1>Wishlist:</h1>
+<% @wishes.each do |wish| %>
+  <h3><a href="/wishes/<%= wish["id"] %>"><%= wish["item"] %></a></h3>
+  <p><%= wish["category"] %></p>
+  <p><%= wish["vendor"] %></p>
+  <p><%= wish["price"] %></p>
+  <p><%= wish["ship"] %></p>
+<% end %>
