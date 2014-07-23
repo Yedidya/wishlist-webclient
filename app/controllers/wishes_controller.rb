@@ -15,13 +15,41 @@ class WishesController < ApplicationController
   end
 
   def create
-    @wish = Unirest.post("http://localhost:3000/wishes.json", headers: {"Accept" => "application/json"}, 
+    @wish = Unirest.post("http://localhost:3000/wishes.json", 
+      headers: {"Accept" => "application/json"}, 
       parameters: { :wish =>
-      { :item => params[:item], :vendor => params[:vendor], :category => params[:category], :price => params[:price], :ship_address => params[:ship]
-      }
-      }).body
-    puts "hahaha"
-    puts @wish
+
+        { :item => params[:item], 
+          :vendor => params[:vendor], 
+          :category => params[:category], 
+          :price => params[:price], 
+          :ship_address => params[:ship]
+        }
+
+                  }).body
+
+    redirect_to wish_path(@wish["wish"]["id"])
+  end
+
+  def edit 
+    @wish = Unirest.get("http://localhost:3000/wishes/#{params[:id]}.json", 
+      :headers => {"Accept" => "application/json"}).body
+  end
+
+  def update
+    @wish = Unirest.patch("http://localhost:3000/wishes.json", 
+      headers: {"Accept" => "application/json"}, 
+      parameters: { :wish =>
+
+        { :item => params[:item], 
+          :vendor => params[:vendor], 
+          :category => params[:category], 
+          :price => params[:price], 
+          :ship_address => params[:ship]
+        }
+
+                  }).body
+
     redirect_to wish_path(@wish["wish"]["id"])
   end
 end

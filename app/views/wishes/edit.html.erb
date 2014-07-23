@@ -1,0 +1,22 @@
+<div class="form">
+  <%= form_tag(wishes_path) do %>
+    <fieldset>
+      <%= label_tag :item %>
+      <%= text_field_tag :item, @wish["item"] %><br/>
+
+      <%= label_tag :vendor %>
+      <%= text_field_tag :vendor, @wish["vendor"]%><br/>
+
+      <%= label_tag :category %>
+      <%= text_field_tag :category, @wish["category"]%><br/>
+
+      <%= label_tag :price %>
+      <%= text_field_tag :price, @wish["price"] %><br/>
+
+      <%= label_tag :ship %>
+      <%= text_field_tag :ship, @wish["ship"] %><br/>
+
+      <%= submit_tag "Update Wish" %>
+    </fieldset>
+  <% end %>
+</div>
